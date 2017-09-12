@@ -151,7 +151,11 @@ public class CalculatorActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    long newValue = (long)mValue * 10 + mNumButtons.indexOf(view);
+                    long sig = 1;
+                    if (mValue < 0)
+                        sig = -1;
+
+                    long newValue = (long)mValue * 10 +  sig * mNumButtons.indexOf(view);
                     if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
                         mValue = 0;
                         error();
