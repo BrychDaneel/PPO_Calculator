@@ -20,4 +20,6 @@
     <string name="cap_sub">-</string>
     <string name="cap_clean">CL</string>
     <string name="cap_equal">=</string>
+
+    <string name="error">error</string>
 </resources>
