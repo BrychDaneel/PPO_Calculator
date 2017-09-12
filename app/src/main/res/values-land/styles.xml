@@ -1,0 +1,15 @@
+<resources>
+    <style name="CalcButtonTheme">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_height">match_parent</item>>
+    </style>
+
+    <style name="ResultStyle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@color/colorGray</item>
+    </style>
+
+</resources>
