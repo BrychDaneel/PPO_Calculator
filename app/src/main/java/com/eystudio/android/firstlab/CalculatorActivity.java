@@ -50,16 +50,16 @@ public class CalculatorActivity extends AppCompatActivity {
         try {
             switch (mLastOperation) {
                 case Add:
-                    newValue = mLastValue + mValue;
+                    newValue = mLastValue + newValue;
                     break;
                 case Sub:
-                    newValue = mLastValue - mValue;
+                    newValue = mLastValue - newValue;
                     break;
                 case Mult:
-                    newValue = mLastValue * mValue;
+                    newValue = mLastValue * newValue;
                     break;
                 case Div:
-                    newValue = mLastValue / mValue;
+                    newValue = mLastValue / newValue;
                     break;
             }
         } catch (ArithmeticException e){
@@ -151,7 +151,7 @@ public class CalculatorActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    long newValue = mValue * 10 + mNumButtons.indexOf(view);
+                    long newValue = (long)mValue * 10 + mNumButtons.indexOf(view);
                     if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
                         mValue = 0;
                         error();
