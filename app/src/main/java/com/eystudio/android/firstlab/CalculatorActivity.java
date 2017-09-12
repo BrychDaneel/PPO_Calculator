@@ -12,12 +12,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class CalculatorActivity extends AppCompatActivity {
 
     OperationType mLastOperation = OperationType.Equel;
     int mLastValue = 0;
     int mValue = 0;
+
+    final String VALUE_KEY = "calculator_value";
+    final String LAST_VALUE_KEY = "calculator_last_value";
+    final String OPERATION_KEY = "calculator_operation";
 
     int [] mNumButtonsID = {R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4,
             R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9};
@@ -44,12 +47,27 @@ public class CalculatorActivity extends AppCompatActivity {
 
         long newValue = mValue;
 
-        switch (mLastOperation) {
-            case Add: newValue = mLastValue + mValue; break;
-            case Sub: newValue = mLastValue - mValue; break;
-            case Mult: newValue = mLastValue * mValue; break;
-            case Div: newValue = mLastValue / mValue; break;
+        try {
+            switch (mLastOperation) {
+                case Add:
+                    newValue = mLastValue + mValue;
+                    break;
+                case Sub:
+                    newValue = mLastValue - mValue;
+                    break;
+                case Mult:
+                    newValue = mLastValue * mValue;
+                    break;
+                case Div:
+                    newValue = mLastValue / mValue;
+                    break;
+            }
+        } catch (ArithmeticException e){
+            mValue = 0;
+            error();
+            return;
         }
+
         if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
             mValue = 0;
             error();
@@ -69,37 +87,14 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculator);
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(VALUE_KEY, mValue);
+        outState.putInt(LAST_VALUE_KEY, mLastValue);
+        outState.putInt(OPERATION_KEY, mLastOperation.ordinal());
+    }
 
-        for (int i=0; i < mNumButtonsID.length; i++) {
-            final Button button = (Button) findViewById(mNumButtonsID[i]);
-            mNumButtons.add(button);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    long newValue = mValue * 10 + mNumButtons.indexOf(view);
-                    if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
-                        mValue = 0;
-                        error();
-                        return;
-                    }
-                    mValue = (int) newValue;
-                    updateResult();
-                }
-            });
-        }
-
-        mAddButton = (Button) findViewById(R.id.button_add);
-        mSubButton = (Button) findViewById(R.id.button_sub);
-        mMultButton = (Button) findViewById(R.id.button_mult);
-        mDivButton = (Button) findViewById(R.id.button_div);
-        mEquelButton = (Button) findViewById(R.id.button_equal);
-        mCleanButton = (Button) findViewById(R.id.button_clean);
-
-        mResult = (TextView) findViewById(R.id.result);
-
+    void bind(){
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,6 +138,47 @@ public class CalculatorActivity extends AppCompatActivity {
                 updateResult();
             }
         });
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calculator);
+
+        for (int i=0; i < mNumButtonsID.length; i++) {
+            final Button button = (Button) findViewById(mNumButtonsID[i]);
+            mNumButtons.add(button);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    long newValue = mValue * 10 + mNumButtons.indexOf(view);
+                    if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
+                        mValue = 0;
+                        error();
+                        return;
+                    }
+                    mValue = (int) newValue;
+                    updateResult();
+                }
+            });
+        }
+
+        mAddButton = (Button) findViewById(R.id.button_add);
+        mSubButton = (Button) findViewById(R.id.button_sub);
+        mMultButton = (Button) findViewById(R.id.button_mult);
+        mDivButton = (Button) findViewById(R.id.button_div);
+        mEquelButton = (Button) findViewById(R.id.button_equal);
+        mCleanButton = (Button) findViewById(R.id.button_clean);
+
+        mResult = (TextView) findViewById(R.id.result);
+
+        bind();
+
+        if (savedInstanceState != null){
+            mValue = savedInstanceState.getInt(VALUE_KEY);
+            mLastValue = savedInstanceState.getInt(LAST_VALUE_KEY);
+            mLastOperation = OperationType.values()[savedInstanceState.getInt(OPERATION_KEY)];
+            updateResult();
+        }
     }
 }
