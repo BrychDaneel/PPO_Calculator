@@ -12,12 +12,22 @@ public class FloatInput {
     int mMaxLength;
     double mValue;
     boolean mPointPressed = false;
+    boolean mIsForeignValue = false;
 
-    public FloatInput(int mMaxLength){
-        this.mMaxLength = mMaxLength;
+    public FloatInput(int maxLength){
+        mMaxLength = maxLength;
+    }
+
+    public FloatInput(double mValue, int maxLength){
+        this(maxLength);
+        setValue(mValue);
     }
 
     public void inputNumber(int num){
+
+        if (mIsForeignValue)
+            clear();
+
         if (mIntCount + mFloatCount >= mMaxLength)
             throw new ArithmeticException("Limit of numbers exceed.");
 
@@ -35,6 +45,7 @@ public class FloatInput {
     }
 
     public void clear(){
+        mIsForeignValue = false;
         mValue = 0d;
         mFloatCount = 0;
         mIntCount = 0;
@@ -52,10 +63,19 @@ public class FloatInput {
         return mValue;
     }
 
+    public void setValue(double value){
+        mIsForeignValue = true;
+        mValue = value;
+    }
+
     @Override
     public String toString() {
         Formatter formatter = new Formatter();
-        String fmt = formatter.format("%%f%d.%d", mIntCount, mFloatCount).toString();
+
+        if (mIsForeignValue)
+            return formatter.format("%g", mValue).toString();
+
+        String fmt = formatter.format("%%f%d.%d", mIntCount > 0 ? mIntCount : 1, mFloatCount).toString();
         return formatter.format(fmt, mValue).toString();
     }
 }
