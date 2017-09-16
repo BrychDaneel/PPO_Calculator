@@ -1,12 +1,13 @@
 package com.eystudio.android.firstlab.models;
 
+import java.io.Serializable;
 import java.util.Formatter;
 
 /**
  * Created by daneel on 17.09.17.
  */
 
-public class FloatInput {
+public class FloatInput implements Serializable{
     int mIntCount = 0;
     int mFloatCount = 0;
     int mMaxLength;
@@ -71,11 +72,16 @@ public class FloatInput {
     @Override
     public String toString() {
         Formatter formatter = new Formatter();
+        String fmt;
 
         if (mIsForeignValue)
-            return formatter.format("%g", mValue).toString();
+            if (mValue % 1 == 0)
+                fmt = "%" + mMaxLength + ".0f";
+            else
+                fmt = "%g";
+         else
+            fmt = formatter.format("%%%d.%df", mIntCount > 0 ? mIntCount : 1, mFloatCount).toString();
 
-        String fmt = formatter.format("%%f%d.%d", mIntCount > 0 ? mIntCount : 1, mFloatCount).toString();
-        return formatter.format(fmt, mValue).toString();
+        return new Formatter().format(fmt, mValue).toString();
     }
 }

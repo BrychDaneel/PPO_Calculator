@@ -7,7 +7,7 @@ package com.eystudio.android.firstlab.models;
 public enum OperationType {
     Equel, Add, Sub, Mult, Div;
 
-    double perfom(double first_value, double second_value){
+    public double perfome(double first_value, double second_value){
         switch (this){
             case Add:
                 return first_value + second_value;
@@ -18,7 +18,7 @@ public enum OperationType {
             case Div:
                 return first_value / second_value;
             default:
-                throw new UnsupportedOperationException("Can't perfom " + this + " to operands.");
+                return  second_value;
         }
     }
 }

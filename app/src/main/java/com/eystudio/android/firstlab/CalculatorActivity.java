@@ -6,138 +6,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.eystudio.android.firstlab.models.FloatInput;
 import com.eystudio.android.firstlab.models.OperationType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class CalculatorActivity extends AppCompatActivity {
-
-    OperationType mLastOperation = OperationType.Equel;
-    int mLastValue = 0;
-    int mValue = 0;
+public class CalculatorActivity extends AppCompatActivity implements View.OnClickListener {
 
     final String VALUE_KEY = "calculator_value";
     final String LAST_VALUE_KEY = "calculator_last_value";
     final String OPERATION_KEY = "calculator_operation";
+    final int MAX_LENGTH = 10;
 
     int [] mNumButtonsID = {R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4,
             R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9};
 
     final List<Button> mNumButtons = new ArrayList<>();
-    Button mAddButton;
-    Button mSubButton;
-    Button mMultButton;
-    Button mDivButton;
-    Button mEquelButton;
-    Button mCleanButton;
+    Button mAddButton, mSubButton, mMultButton, mDivButton, mEquelButton, mCleanButton;
 
     TextView mResult;
 
-    void updateResult(){
-        mResult.setText(Integer.toString(mValue));
-    }
-
-    void error(){
-        mResult.setText(R.string.error);
-    }
-
-    void apply_operation(){
-
-        long newValue = mValue;
-
-        try {
-            switch (mLastOperation) {
-                case Add:
-                    newValue = mLastValue + newValue;
-                    break;
-                case Sub:
-                    newValue = mLastValue - newValue;
-                    break;
-                case Mult:
-                    newValue = mLastValue * newValue;
-                    break;
-                case Div:
-                    newValue = mLastValue / newValue;
-                    break;
-            }
-        } catch (ArithmeticException e){
-            mValue = 0;
-            error();
-            return;
-        }
-
-        if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
-            mValue = 0;
-            error();
-            return;
-        }
-
-        mValue = (int)newValue;
-        updateResult();
-    }
-
-    void change_operation(OperationType operation){
-        apply_operation();
-        mLastValue = mValue;
-        if (operation != OperationType.Equel)
-            mValue = 0;
-        mLastOperation = operation;
-    }
+    OperationType mOperation = OperationType.Equel;
+    double mLastValue = 0d;
+    FloatInput mValue = new FloatInput(MAX_LENGTH);
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(VALUE_KEY, mValue);
-        outState.putInt(LAST_VALUE_KEY, mLastValue);
-        outState.putInt(OPERATION_KEY, mLastOperation.ordinal());
-    }
-
-    void bind(){
-        mAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                change_operation(OperationType.Add);
-            }
-        });
-
-        mSubButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                change_operation(OperationType.Sub);
-            }
-        });
-
-        mMultButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                change_operation(OperationType.Mult);
-            }
-        });
-
-        mDivButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                change_operation(OperationType.Div);
-            }
-        });
-
-        mEquelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                change_operation(OperationType.Equel);
-            }
-        });
-
-
-        mCleanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mValue = 0;
-                updateResult();
-            }
-        });
+        outState.putSerializable(VALUE_KEY, mValue);
+        outState.putDouble(LAST_VALUE_KEY, mLastValue);
+        outState.putInt(OPERATION_KEY, mOperation.ordinal());
     }
 
     @Override
@@ -145,26 +44,34 @@ public class CalculatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
+        getElements();
+        bind();
+
+        if (savedInstanceState != null){
+            mValue = (FloatInput) savedInstanceState.getSerializable(VALUE_KEY);
+            mLastValue = savedInstanceState.getInt(LAST_VALUE_KEY);
+            mOperation = OperationType.values()[savedInstanceState.getInt(OPERATION_KEY)];
+            updateResult();
+        }
+    }
+
+    void bind(){
+        for (Button button : mNumButtons)
+            button.setOnClickListener(this);
+
+        mAddButton.setOnClickListener(this);
+        mSubButton.setOnClickListener(this);
+        mMultButton.setOnClickListener(this);
+        mDivButton.setOnClickListener(this);
+        mEquelButton.setOnClickListener(this);
+        mCleanButton.setOnClickListener(this);
+    }
+
+    void getElements(){
         for (int i=0; i < mNumButtonsID.length; i++) {
             final Button button = (Button) findViewById(mNumButtonsID[i]);
             mNumButtons.add(button);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    long sig = 1;
-                    if (mValue < 0)
-                        sig = -1;
-
-                    long newValue = (long)mValue * 10 +  sig * mNumButtons.indexOf(view);
-                    if (newValue > Integer.MAX_VALUE || newValue < Integer.MIN_VALUE ){
-                        mValue = 0;
-                        error();
-                        return;
-                    }
-                    mValue = (int) newValue;
-                    updateResult();
-                }
-            });
+            button.setOnClickListener(this);
         }
 
         mAddButton = (Button) findViewById(R.id.button_add);
@@ -175,14 +82,53 @@ public class CalculatorActivity extends AppCompatActivity {
         mCleanButton = (Button) findViewById(R.id.button_clean);
 
         mResult = (TextView) findViewById(R.id.result);
+    }
 
-        bind();
+    @Override
+    public void onClick(View view) {
 
-        if (savedInstanceState != null){
-            mValue = savedInstanceState.getInt(VALUE_KEY);
-            mLastValue = savedInstanceState.getInt(LAST_VALUE_KEY);
-            mLastOperation = OperationType.values()[savedInstanceState.getInt(OPERATION_KEY)];
+        if (mNumButtons.contains(view)) {
+            mValue.inputNumber(mNumButtons.indexOf(view));
             updateResult();
+            return;
+        }
+
+        switch (view.getId()){
+            case R.id.button_add: changeOperation(OperationType.Add); break;
+            case R.id.button_sub: changeOperation(OperationType.Sub); break;
+            case R.id.button_mult: changeOperation(OperationType.Mult); break;
+            case R.id.button_div: changeOperation(OperationType.Div); break;
+            case R.id.button_clean: mValue.clear(); updateResult(); break;
+            case R.id.button_equal: changeOperation(OperationType.Equel); break;
         }
     }
+
+    void updateResult(){
+        mResult.setText(mValue.toString());
+    }
+
+    void applyOperation(){
+        if (mOperation == OperationType.Equel)
+            return;
+
+        double newValue;
+        try{
+            newValue = mOperation.perfome(mLastValue, mValue.getValue());
+        } catch (ArithmeticException e){
+            mResult.setText(R.string.error);
+            return;
+        }
+
+        mValue.setValue(newValue);
+        updateResult();
+    }
+
+    void changeOperation(OperationType newOperation){
+        applyOperation();
+        mOperation = newOperation;
+        mLastValue = mValue.getValue();
+        if (mOperation != OperationType.Equel)
+            mValue.clear();
+    }
+
 }
