@@ -15,6 +15,10 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
     final double DEFAULT_VALUE = 0;
     final String VALUE_KEY = "com.eystudio.android.firstlab.more.Value";
     final String VALUE_KEY_RET = "com.eystudio.android.firstlab.more.RetValue";
+
+    final String BUBLE_VALUE = "MoreValue";
+    final String BUBLE_NEW_VALUE = "MoreNewValue";
+
     double mValue;
     double mNewValue;
 
@@ -34,6 +38,13 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         updateValue();
         for (int id : mButtonIDs)
             findViewById(id).setOnClickListener(this);
+
+        if (savedInstanceState != null){
+            mValue = savedInstanceState.getDouble(BUBLE_VALUE);
+            mNewValue = savedInstanceState.getDouble(BUBLE_NEW_VALUE);
+            updateValue();
+            updateNewValue();
+        }
     }
 
     @Override
@@ -77,5 +88,12 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
     void updateNewValue(){
         tvNewValue.setText(String.format("%g", mNewValue));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble(BUBLE_VALUE, mValue);
+        outState.putDouble(BUBLE_NEW_VALUE, mNewValue);
     }
 }
