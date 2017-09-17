@@ -61,17 +61,63 @@
     </TableRow>
 
     <TableRow android:layout_weight="1">
-        <Button style="@style/CalcButtonTheme"
+        <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_sin"
             android:text="@string/sin"/>
-        <Button style="@style/CalcButtonTheme"
+        <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_cos"
             android:text="@string/cos"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_tan"
+            android:text="@string/tan"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_ctg"
+            android:text="@string/ctg"/>
     </TableRow>
 
     <TableRow android:layout_weight="1">
-        <Button style="@style/CalcButtonTheme" android:id="@+id/button_tan" android:text="@string/tan"/>
-        <Button style="@style/CalcButtonTheme" android:id="@+id/button_ctg" android:text="@string/ctg"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_asin"
+            android:text="@string/asin"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_acos"
+            android:text="@string/acos"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_atan"
+            android:text="@string/atan"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_actg"
+            android:text="@string/actg"/>
+    </TableRow>
+
+    <TableRow android:layout_weight="1">
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_sqr"
+            android:text="@string/sqr"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_sqrt"
+            android:text="@string/cos"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_exp"
+            android:text="@string/exp"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_log"
+            android:text="@string/log"/>
+    </TableRow>
+
+    <TableRow android:layout_weight="1">
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_pi"
+            android:text="@string/pi"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_e"
+            android:text="@string/e"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_c"
+            android:text="@string/c"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_na"
+            android:text="@string/na"/>
     </TableRow>
 
 </TableLayout>

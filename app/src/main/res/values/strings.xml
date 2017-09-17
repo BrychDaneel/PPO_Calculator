@@ -28,6 +28,21 @@
     <string name="tan">tan</string>
     <string name="ctg">ctg</string>
 
+    <string name="asin">asn</string>
+    <string name="acos">acs</string>
+    <string name="atan">atg</string>
+    <string name="actg">act</string>
+
+    <string name="sqr">sqr</string>
+    <string name="sqrt">sqrt</string>
+    <string name="log">log</string>
+    <string name="exp">exp</string>
+
+    <string name="pi">pi</string>
+    <string name="e">e</string>
+    <string name="c">c</string>
+    <string name="na">na</string>
+
     <string name="cap_more">mr</string>
     <string name="cap_ok">save</string>
 
