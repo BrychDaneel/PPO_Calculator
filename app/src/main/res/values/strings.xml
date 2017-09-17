@@ -32,7 +32,7 @@
     <string name="cap_ok">save</string>
 
     <string name="cap_value">value: </string>
-    <string name="cap_new_value">new value: </string>
+    <string name="cap_new_value">new: </string>
 
     <string name="error">error</string>
 </resources>

@@ -20,7 +20,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     final String LAST_VALUE_KEY = "calculator_last_value";
     final String OPERATION_KEY = "calculator_operation";
     final int MAX_LENGTH = 10;
-
     final String MORE_VALUE_KEY = "com.eystudio.android.firstlab.more.Value";
     final String MORE_VALUE_KEY_RET = "com.eystudio.android.firstlab.more.RetValue";
     final int REQUEST_UPDATE_VALUE = 0;

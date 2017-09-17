@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoreActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -14,21 +18,64 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
     double mValue;
     double mNewValue;
 
+    TextView tvNewValue, tvValue;
+
+    int[] mButtonIDs = new int[] {R.id.button_sin, R.id.button_cos,
+                                  R.id.button_tan, R.id.button_ctg,
+                                  R.id.button_more_ok};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
+        tvValue = (TextView) findViewById(R.id.more_value);
+        tvNewValue = (TextView) findViewById(R.id.more_new_value);
         mValue = getIntent().getDoubleExtra(VALUE_KEY, DEFAULT_VALUE);
+        updateValue();
+        for (int id : mButtonIDs)
+            findViewById(id).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.button_more_ok:
-                Intent intent = new Intent();
-                intent.putExtra(VALUE_KEY_RET, mValue);
-                setResult(Activity.RESULT_OK, intent);
-                break;
+
+        try {
+            switch (view.getId()) {
+                case R.id.button_more_ok:
+                    mValue = mNewValue;
+                    Intent intent = new Intent();
+                    intent.putExtra(VALUE_KEY_RET, mValue);
+                    setResult(Activity.RESULT_OK, intent);
+                    updateValue();
+                    break;
+                case R.id.button_sin:
+                    mNewValue = Math.sin(mValue);
+                    updateNewValue();
+                    break;
+                case R.id.button_cos:
+                    mNewValue = Math.cos(mValue);
+                    updateNewValue();
+                    break;
+                case R.id.button_tan:
+                    mNewValue = Math.tan(mValue);
+                    updateNewValue();
+                    break;
+                case R.id.button_ctg:
+                    mNewValue = 1 / Math.tan(mValue);
+                    updateNewValue();
+                    break;
+            }
+        } catch (ArithmeticException e){
+            mNewValue = 0;
+            tvNewValue.setText(getText(R.string.error));
         }
+    }
+
+    void updateValue(){
+        tvValue.setText(String.format("%g", mValue));
+    }
+
+    void updateNewValue(){
+        tvNewValue.setText(String.format("%g", mNewValue));
     }
 }
