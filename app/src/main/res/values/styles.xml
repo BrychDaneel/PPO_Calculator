@@ -23,4 +23,9 @@
         <item name="android:background">@color/colorGray</item>
     </style>
 
+    <style name="Caption">
+        <item name="android:textSize">25sp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
 </resources>

@@ -12,6 +12,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
     final String VALUE_KEY = "com.eystudio.android.firstlab.more.Value";
     final String VALUE_KEY_RET = "com.eystudio.android.firstlab.more.RetValue";
     double mValue;
+    double mNewValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

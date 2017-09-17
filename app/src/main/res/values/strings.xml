@@ -23,8 +23,16 @@
     <string name="cap_clean">CL</string>
     <string name="cap_equal">=</string>
 
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="ctg">ctg</string>
+
     <string name="cap_more">mr</string>
-    <string name="cap_ok">ok</string>
+    <string name="cap_ok">save</string>
+
+    <string name="cap_value">value: </string>
+    <string name="cap_new_value">new value: </string>
 
     <string name="error">error</string>
 </resources>
