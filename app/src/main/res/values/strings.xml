@@ -24,6 +24,7 @@
     <string name="cap_equal">=</string>
 
     <string name="cap_more">mr</string>
+    <string name="cap_ok">ok</string>
 
     <string name="error">error</string>
 </resources>

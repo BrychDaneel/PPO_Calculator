@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.eystudio.android.firstlab.MoreActivity">
 
+    <Button android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/button_more_ok" android:text="@string/cap_ok"/>
+
 </android.support.constraint.ConstraintLayout>

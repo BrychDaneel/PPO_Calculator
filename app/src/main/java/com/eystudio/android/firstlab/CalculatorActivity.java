@@ -1,5 +1,7 @@
 package com.eystudio.android.firstlab;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,11 +21,16 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     final String OPERATION_KEY = "calculator_operation";
     final int MAX_LENGTH = 10;
 
+    final String MORE_VALUE_KEY = "com.eystudio.android.firstlab.more.Value";
+    final String MORE_VALUE_KEY_RET = "com.eystudio.android.firstlab.more.RetValue";
+    final int REQUEST_UPDATE_VALUE = 0;
+
     int [] mNumButtonsID = {R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4,
             R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9};
 
     final List<Button> mNumButtons = new ArrayList<>();
-    Button mAddButton, mSubButton, mMultButton, mDivButton, mEquelButton, mCleanButton, mPointButton;
+    Button mAddButton, mSubButton, mMultButton, mDivButton, mEquelButton,
+            mCleanButton, mPointButton, mMoreButton;
 
     TextView mResult;
 
@@ -66,6 +73,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         mEquelButton.setOnClickListener(this);
         mCleanButton.setOnClickListener(this);
         mPointButton.setOnClickListener(this);
+        mMoreButton.setOnClickListener(this);
     }
 
     void getElements(){
@@ -82,6 +90,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         mEquelButton = (Button) findViewById(R.id.button_equal);
         mCleanButton = (Button) findViewById(R.id.button_clean);
         mPointButton = (Button) findViewById(R.id.button_point);
+        mMoreButton = (Button) findViewById(R.id.button_more);
 
         mResult = (TextView) findViewById(R.id.result);
     }
@@ -107,6 +116,23 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
             case R.id.button_clean: mValue.clear(); updateResult(); break;
             case R.id.button_equal: changeOperation(OperationType.Equel); break;
             case R.id.button_point: mValue.inputPoint(); break;
+            case R.id.button_more: more(); break;
+        }
+    }
+
+    void more(){
+        Intent intent = new Intent(this, MoreActivity.class);
+        intent.putExtra(MORE_VALUE_KEY, mValue.getValue());
+        startActivityForResult(intent, REQUEST_UPDATE_VALUE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_UPDATE_VALUE && resultCode == Activity.RESULT_OK){
+            mValue.setValue(data.getDoubleExtra(MORE_VALUE_KEY_RET, 0));
+            updateResult();
         }
     }
 
