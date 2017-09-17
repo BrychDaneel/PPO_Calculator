@@ -24,9 +24,13 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView tvNewValue, tvValue;
 
-    int[] mButtonIDs = new int[] {R.id.button_sin, R.id.button_cos,
-                                  R.id.button_tan, R.id.button_ctg,
-                                  R.id.button_more_ok};
+    int[] mButtonIDs = new int[] {
+            R.id.button_more_ok,
+            R.id.button_sin, R.id.button_cos, R.id.button_tan, R.id.button_ctg,
+            R.id.button_asin, R.id.button_acos, R.id.button_atan, R.id.button_actg,
+            R.id.button_sqr, R.id.button_sqrt, R.id.button_exp, R.id.button_log,
+            R.id.button_pi, R.id.button_e, R.id.button_c, R.id.button_na
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,29 +61,35 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                     Intent intent = new Intent();
                     intent.putExtra(VALUE_KEY_RET, mValue);
                     setResult(Activity.RESULT_OK, intent);
-                    updateValue();
                     break;
-                case R.id.button_sin:
-                    mNewValue = Math.sin(mValue);
-                    updateNewValue();
-                    break;
-                case R.id.button_cos:
-                    mNewValue = Math.cos(mValue);
-                    updateNewValue();
-                    break;
-                case R.id.button_tan:
-                    mNewValue = Math.tan(mValue);
-                    updateNewValue();
-                    break;
-                case R.id.button_ctg:
-                    mNewValue = 1 / Math.tan(mValue);
-                    updateNewValue();
-                    break;
+
+                case R.id.button_sin: mNewValue = Math.sin(mValue); break;
+                case R.id.button_cos: mNewValue = Math.cos(mValue); break;
+                case R.id.button_tan: mNewValue = Math.tan(mValue); break;
+                case R.id.button_ctg: mNewValue = 1 / Math.tan(mValue); break;
+
+                case R.id.button_asin: mNewValue = Math.asin(mValue); break;
+                case R.id.button_acos: mNewValue = Math.acos(mValue); break;
+                case R.id.button_atan: mNewValue = Math.atan(mValue); break;
+                case R.id.button_actg: mNewValue = Math.atan(1 / mValue); break;
+
+                case R.id.button_sqr: mNewValue = Math.asin(mValue); break;
+                case R.id.button_sqrt: mNewValue = Math.acos(mValue); break;
+                case R.id.button_exp: mNewValue = Math.atan(mValue); break;
+                case R.id.button_log: mNewValue = Math.atan(1 / mValue); break;
+
+                case R.id.button_pi: mNewValue = Math.PI; break;
+                case R.id.button_e: mNewValue = Math.E; break;
+                case R.id.button_c: mNewValue = 299792458d; break;
+                case R.id.button_na: mNewValue =  6.022140857E+23d; break;
             }
         } catch (ArithmeticException e){
             mNewValue = 0;
             tvNewValue.setText(getText(R.string.error));
         }
+
+        updateValue();
+        updateNewValue();
     }
 
     void updateValue(){
