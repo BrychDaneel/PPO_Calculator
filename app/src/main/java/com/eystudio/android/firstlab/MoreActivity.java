@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
     final String BUBLE_VALUE = "MoreValue";
     final String BUBLE_NEW_VALUE = "MoreNewValue";
+
+    final double C = 299792458d;
+    final double NA = 6.022140857E+23d;
 
     double mValue;
     double mNewValue;
@@ -40,8 +44,11 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         tvNewValue = (TextView) findViewById(R.id.more_new_value);
         mValue = getIntent().getDoubleExtra(VALUE_KEY, DEFAULT_VALUE);
         updateValue();
-        for (int id : mButtonIDs)
-            findViewById(id).setOnClickListener(this);
+        for (int id : mButtonIDs) {
+            View view = findViewById(id);
+            if (view != null)
+                view.setOnClickListener(this);
+        }
 
         if (savedInstanceState != null){
             mValue = savedInstanceState.getDouble(BUBLE_VALUE);
@@ -80,12 +87,13 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
                 case R.id.button_pi: mNewValue = Math.PI; break;
                 case R.id.button_e: mNewValue = Math.E; break;
-                case R.id.button_c: mNewValue = 299792458d; break;
-                case R.id.button_na: mNewValue =  6.022140857E+23d; break;
+                case R.id.button_c: mNewValue = C; break;
+                case R.id.button_na: mNewValue = NA; break;
             }
         } catch (ArithmeticException e){
             mNewValue = 0;
             tvNewValue.setText(getText(R.string.error));
+            return;
         }
 
         updateValue();

@@ -8,8 +8,6 @@
     tools:context="com.eystudio.android.firstlab.MoreActivity">
 
     <TableRow android:layout_height="wrap_content">
-
-
             <TextView android:layout_margin="5dp"
                 style="@style/Caption"
                 android:text="@string/cap_value"
@@ -43,7 +41,7 @@
     </TableRow>
 
 
-    <TableRow>
+    <TableRow android:layout_height="wrap_content">
         <Button style="@style/CalcButtonTheme"
             android:id="@+id/button_more_ok"
             android:text="@string/cap_ok"/>
@@ -56,17 +54,17 @@
         <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_cos"
             android:text="@string/cos"/>
-        <Button style="@style/MoreButtonTheme" 
-            android:id="@+id/button_tan" 
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_tan"
             android:text="@string/tan"/>
-        <Button style="@style/MoreButtonTheme" 
-            android:id="@+id/button_ctg" 
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_ctg"
             android:text="@string/ctg"/>
         <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_pi"
             android:text="@string/pi"/>
     </TableRow>
-    
+
     <TableRow android:layout_weight="1">
         <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_asin"
@@ -83,25 +81,24 @@
         <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_e"
             android:text="@string/e"/>
-    </TableRow> 
-    
-    <TableRow android:layout_weight="1">
-    <Button style="@style/MoreButtonTheme"
-        android:id="@+id/button_sqr"
-        android:text="@string/sqr"/>
-    <Button style="@style/MoreButtonTheme"
-        android:id="@+id/button_sqrt"
-        android:text="@string/cos"/>
-    <Button style="@style/MoreButtonTheme"
-        android:id="@+id/button_exp"
-        android:text="@string/exp"/>
-    <Button style="@style/MoreButtonTheme"
-        android:id="@+id/button_log"
-        android:text="@string/log"/>
+    </TableRow>
 
-    <Button style="@style/MoreButtonTheme"
-        android:id="@+id/button_c"
-        android:text="@string/c"/>
+    <TableRow android:layout_weight="1">
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_sqr"
+            android:text="@string/sqr"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_sqrt"
+            android:text="@string/cos"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_exp"
+            android:text="@string/exp"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_log"
+            android:text="@string/log"/>
+        <Button style="@style/MoreButtonTheme"
+            android:id="@+id/button_c"
+            android:text="@string/c"/>
     </TableRow>
 
 </TableLayout>
