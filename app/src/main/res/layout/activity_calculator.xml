@@ -30,7 +30,7 @@
 
     <TableRow android:layout_weight="1">
 
-        <TableLayout android:layout_weight="3"  android:layout_height="match_parent">
+        <TableLayout android:layout_weight="1"  android:layout_width="0dp"  android:layout_height="match_parent">
 
             <TableRow android:layout_weight="1">
 
@@ -62,7 +62,7 @@
 
             </TableLayout>
 
-        <TableLayout android:layout_weight="1" android:layout_height="match_parent" android:orientation="vertical">
+        <TableLayout android:layout_weight="0.333" android:layout_height="match_parent" android:layout_width="0dp" android:orientation="vertical">
             <TableRow android:layout_weight="1">
                 <Button android:id="@+id/button_more"  style="@style/CalcButtonTheme"  android:text="@string/cap_more"/>
             </TableRow>
