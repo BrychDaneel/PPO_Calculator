@@ -14,12 +14,16 @@
     <string name="cap9">9</string>
     <string name="cap0">0</string>
 
+    <string name="cap_point">.</string>
+
     <string name="cap_mult">*</string>
     <string name="cap_div">/</string>
     <string name="cap_add">+</string>
     <string name="cap_sub">-</string>
     <string name="cap_clean">CL</string>
     <string name="cap_equal">=</string>
+
+    <string name="cap_more">mr</string>
 
     <string name="error">error</string>
 </resources>

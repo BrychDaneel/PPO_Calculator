@@ -42,11 +42,14 @@ public class FloatInput implements Serializable{
     }
 
     public void inputPoint(){
+        if (mIsForeignValue)
+            clear();
         mPointPressed = true;
     }
 
     public void clear(){
         mIsForeignValue = false;
+        mPointPressed = false;
         mValue = 0d;
         mFloatCount = 0;
         mIntCount = 0;

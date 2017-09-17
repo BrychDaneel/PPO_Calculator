@@ -23,7 +23,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
             R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9};
 
     final List<Button> mNumButtons = new ArrayList<>();
-    Button mAddButton, mSubButton, mMultButton, mDivButton, mEquelButton, mCleanButton;
+    Button mAddButton, mSubButton, mMultButton, mDivButton, mEquelButton, mCleanButton, mPointButton;
 
     TextView mResult;
 
@@ -65,6 +65,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         mDivButton.setOnClickListener(this);
         mEquelButton.setOnClickListener(this);
         mCleanButton.setOnClickListener(this);
+        mPointButton.setOnClickListener(this);
     }
 
     void getElements(){
@@ -80,6 +81,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         mDivButton = (Button) findViewById(R.id.button_div);
         mEquelButton = (Button) findViewById(R.id.button_equal);
         mCleanButton = (Button) findViewById(R.id.button_clean);
+        mPointButton = (Button) findViewById(R.id.button_point);
 
         mResult = (TextView) findViewById(R.id.result);
     }
@@ -88,8 +90,12 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
 
         if (mNumButtons.contains(view)) {
-            mValue.inputNumber(mNumButtons.indexOf(view));
-            updateResult();
+            try {
+                mValue.inputNumber(mNumButtons.indexOf(view));
+                updateResult();
+            } catch (ArithmeticException e){
+                return;
+            }
             return;
         }
 
@@ -100,6 +106,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
             case R.id.button_div: changeOperation(OperationType.Div); break;
             case R.id.button_clean: mValue.clear(); updateResult(); break;
             case R.id.button_equal: changeOperation(OperationType.Equel); break;
+            case R.id.button_point: mValue.inputPoint(); break;
         }
     }
 
