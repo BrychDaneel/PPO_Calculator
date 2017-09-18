@@ -7,7 +7,7 @@
     android:layout_margin="10dp"
     tools:context="com.eystudio.android.firstlab.MoreActivity">
 
-    <TableRow android:layout_height="wrap_content">
+    <TableRow android:layout_height="wrap_content" android:layout_margin="5dp">
             <TextView android:layout_margin="5dp"
                 style="@style/Caption"
                 android:text="@string/cap_value"
@@ -15,7 +15,7 @@
                 android:layout_width="wrap_content"
                 />
 
-            <TextView  style="@style/ResultStyle"
+            <TextView  style="@style/MoreResultStyle"
                 android:id="@+id/more_value"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content" />
 
-            <TextView   style="@style/ResultStyle"
+            <TextView   style="@style/MoreResultStyle"
                 android:id="@+id/more_new_value"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"

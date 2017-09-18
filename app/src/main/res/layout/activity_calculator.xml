@@ -8,7 +8,7 @@
     tools:context="com.eystudio.android.firstlab.CalculatorActivity">
 
 
-    <TableRow android:layout_height="wrap_content">
+    <TableRow android:layout_height="wrap_content" android:layout_margin="5dp">
 
         <TextView style="@style/ResultStyle"
             android:id="@+id/result"
@@ -20,7 +20,7 @@
     </TableRow>
 
 
-    <TableRow  android:layout_marginTop="20dp" android:layout_weight="0.1">
+    <TableRow  android:layout_marginTop="15dp" android:layout_weight="0.1">
 
         <Button android:id="@+id/button_add" style="@style/CalcButtonTheme" android:text="@string/cap_add"/>
         <Button android:id="@+id/button_sub" style="@style/CalcButtonTheme" android:text="@string/cap_sub"/>

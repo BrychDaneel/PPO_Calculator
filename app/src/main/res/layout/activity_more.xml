@@ -7,7 +7,7 @@
     android:layout_margin="10dp"
     tools:context="com.eystudio.android.firstlab.MoreActivity">
 
-    <TableRow >
+    <TableRow android:layout_margin="5dp">
         <LinearLayout android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:orientation="vertical">
@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView  style="@style/ResultStyle"
+            <TextView  style="@style/MoreResultStyle"
                 android:id="@+id/more_value"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:textAlignment="textEnd"
                 android:text="@string/start_text"/>
 
-            <TextView  android:layout_marginTop="10dp" style="@style/ResultStyle"
+            <TextView  android:layout_marginTop="10dp" style="@style/MoreResultStyle"
                 android:id="@+id/more_new_value"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
