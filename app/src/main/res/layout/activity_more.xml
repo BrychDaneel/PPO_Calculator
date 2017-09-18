@@ -96,7 +96,7 @@
             android:text="@string/sqr"/>
         <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_sqrt"
-            android:text="@string/cos"/>
+            android:text="@string/sqrt"/>
         <Button style="@style/MoreButtonTheme"
             android:id="@+id/button_exp"
             android:text="@string/exp"/>

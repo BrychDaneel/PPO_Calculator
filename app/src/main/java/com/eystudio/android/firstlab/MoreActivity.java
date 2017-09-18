@@ -80,10 +80,10 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                 case R.id.button_atan: mNewValue = Math.atan(mValue); break;
                 case R.id.button_actg: mNewValue = Math.atan(1 / mValue); break;
 
-                case R.id.button_sqr: mNewValue = Math.asin(mValue); break;
-                case R.id.button_sqrt: mNewValue = Math.acos(mValue); break;
-                case R.id.button_exp: mNewValue = Math.atan(mValue); break;
-                case R.id.button_log: mNewValue = Math.atan(1 / mValue); break;
+                case R.id.button_sqr: mNewValue = mValue * mValue; break;
+                case R.id.button_sqrt: mNewValue = Math.sqrt(mValue); break;
+                case R.id.button_exp: mNewValue = Math.exp(mValue); break;
+                case R.id.button_log: mNewValue = Math.log(mValue); break;
 
                 case R.id.button_pi: mNewValue = Math.PI; break;
                 case R.id.button_e: mNewValue = Math.E; break;
