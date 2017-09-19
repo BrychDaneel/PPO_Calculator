@@ -55,7 +55,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
 
         if (savedInstanceState != null){
             mValue = (FloatInput) savedInstanceState.getSerializable(VALUE_KEY);
-            mLastValue = savedInstanceState.getInt(LAST_VALUE_KEY);
+            mLastValue = savedInstanceState.getDouble(LAST_VALUE_KEY);
             mOperation = OperationType.values()[savedInstanceState.getInt(OPERATION_KEY)];
             updateResult();
         }
