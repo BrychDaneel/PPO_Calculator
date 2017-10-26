@@ -50,4 +50,8 @@
     <string name="cap_new_value">new: </string>
 
     <string name="error">error</string>
+
+    <string name="normal_tab">Обычный</string>
+    <string name="program_tab">Инжинерный</string>
+
 </resources>
