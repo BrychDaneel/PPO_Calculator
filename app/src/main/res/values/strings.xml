@@ -68,5 +68,6 @@
 
     <string name="normal_tab">Normal</string>
     <string name="program_tab">Program</string>
+    <string name="picture_tab">Picture</string>
 
 </resources>

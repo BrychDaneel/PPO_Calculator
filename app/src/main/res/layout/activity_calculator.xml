@@ -34,6 +34,10 @@
                     android:layout_height="match_parent"
                     android:id="@+id/program_calculator_container"/>
 
+                <FrameLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/picture_container"/>
+
             </FrameLayout>
         </LinearLayout>
     </TabHost>

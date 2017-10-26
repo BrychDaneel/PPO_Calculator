@@ -34,6 +34,12 @@ public class CalculatorActivity extends Activity {
                     .add(R.id.program_calculator_container, progFragment).commit();
         }
 
+        Fragment pictFragment = fragmentManager.findFragmentById(R.id.picture_container);
+        if (pictFragment == null) {
+            pictFragment = new PictureFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.picture_container, pictFragment).commit();
+        }
 
         tabHost = findViewById(R.id.tab_host);
         tabHost.setup();
@@ -47,6 +53,11 @@ public class CalculatorActivity extends Activity {
         progTabSpec.setContent(R.id.program_calculator_container);
         progTabSpec.setIndicator(getString(R.string.program_tab));
         tabHost.addTab(progTabSpec);
+
+        TabHost.TabSpec pictTabSpec = tabHost.newTabSpec(mProgramTabTag);
+        pictTabSpec.setContent(R.id.picture_container);
+        pictTabSpec.setIndicator(getString(R.string.picture_tab));
+        tabHost.addTab(pictTabSpec);
 
         if (savedInstanceState != null)
             tabHost.setCurrentTab(savedInstanceState.getInt(TAB_KEY));
