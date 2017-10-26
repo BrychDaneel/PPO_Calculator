@@ -66,7 +66,23 @@ public class ProgramFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_program, container, false);
         getElements(view);
         bind();
+
+        if (savedInstanceState != null){
+            mValue = (FloatInput) savedInstanceState.getSerializable(VALUE_KEY);
+            mLastValue = savedInstanceState.getDouble(LAST_VALUE_KEY);
+            mOperation = OperationType.values()[savedInstanceState.getInt(OPERATION_KEY)];
+            changeBase(mValue.getBase());
+        }
+
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(VALUE_KEY, mValue);
+        outState.putDouble(LAST_VALUE_KEY, mLastValue);
+        outState.putInt(OPERATION_KEY, mOperation.ordinal());
     }
 
     void applyOperation(){

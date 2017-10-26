@@ -8,9 +8,11 @@ import android.widget.TabHost;
 
 public class CalculatorActivity extends Activity {
 
-    final  String mNormalTabTag = "NormalTag";
-    final  String mProgramTabTag = "ProgramTag";
+    final String mNormalTabTag = "NormalTag";
+    final String mProgramTabTag = "ProgramTag";
+    final String TAB_KEY = "om.eystudio.android.firstlab.CalculatorActivity.tab";
 
+    TabHost tabHost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public class CalculatorActivity extends Activity {
         }
 
 
-        TabHost tabHost = findViewById(R.id.tab_host);
+        tabHost = findViewById(R.id.tab_host);
         tabHost.setup();
 
         TabHost.TabSpec normTabSpec = tabHost.newTabSpec(mNormalTabTag);
@@ -46,6 +48,15 @@ public class CalculatorActivity extends Activity {
         progTabSpec.setIndicator(getString(R.string.program_tab));
         tabHost.addTab(progTabSpec);
 
-        tabHost.setCurrentTab(0);
+        if (savedInstanceState != null)
+            tabHost.setCurrentTab(savedInstanceState.getInt(TAB_KEY));
+        else
+            tabHost.setCurrentTab(0);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(TAB_KEY, tabHost.getCurrentTab());
     }
 }

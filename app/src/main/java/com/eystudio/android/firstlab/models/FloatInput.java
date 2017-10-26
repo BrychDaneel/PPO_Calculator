@@ -40,8 +40,11 @@ public class FloatInput implements Serializable{
 
         if (!mPointPressed){
             mValue = mValue * mBase + num;
-            mIntCount++;
+            if (!(mIntCount == 0 && num == 0))
+                mIntCount++;
         } else {
+            if (num == 0)
+                return;
             mFloatCount++;
             mValue = mValue + Math.pow(mBase, -mFloatCount) * num;
         }

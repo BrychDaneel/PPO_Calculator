@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PSWLab</string>
+    <string name="app_name">ЛабаППО</string>
 
     <string name="start_text">0</string>
 
@@ -34,9 +34,9 @@
     <string name="cap_xor">xor</string>
     <string name="cap_not">not</string>
 
-    <string name="mode_hex">hex</string>
-    <string name="mode_dec">dec</string>
-    <string name="mode_bin">bin</string>
+    <string name="mode_hex">шест</string>
+    <string name="mode_dec">дес</string>
+    <string name="mode_bin">двоич</string>
 
     <string name="sin">sin</string>
     <string name="cos">cos</string>
@@ -61,12 +61,12 @@
     <string name="cap_more">mr</string>
     <string name="cap_ok">save</string>
 
-    <string name="cap_value">value: </string>
-    <string name="cap_new_value">new: </string>
+    <string name="cap_value">знач: </string>
+    <string name="cap_new_value">нов: </string>
 
-    <string name="error">error</string>
+    <string name="error">ошибка</string>
 
-    <string name="normal_tab">Normal</string>
-    <string name="program_tab">Program</string>
+    <string name="normal_tab">Обычный</string>
+    <string name="program_tab">Инжинерный</string>
 
 </resources>
