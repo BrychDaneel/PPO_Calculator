@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context="com.eystudio.android.firstlab.CalculatorActivity">
+    android:id="@+id/fragment_calculator"
+    tools:context="com.eystudio.android.firstlab.CalculatorFragment">
 
     <TextView style="@style/ResultStyle"
         android:id="@+id/result"
