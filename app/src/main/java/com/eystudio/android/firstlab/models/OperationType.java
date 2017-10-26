@@ -24,9 +24,15 @@ public enum OperationType {
             case Xor:
                 return Math.round(first_value) ^ Math.round(second_value);
             case Not:
-                return ~Math.round(second_value);
+                return ~Math.round(first_value);
             default:
                 return  second_value;
         }
+    }
+
+    public boolean isBinary(){
+        if (this == Not)
+            return true;
+        return false;
     }
 }

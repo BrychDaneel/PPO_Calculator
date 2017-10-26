@@ -27,9 +27,9 @@ public class CalculatorActivity extends Activity {
 
         Fragment progFragment = fragmentManager.findFragmentById(R.id.normal_calculator_container);
         if (progFragment == null) {
-            progFragment = new CalculatorFragment();
+            progFragment = new ProgramFragment();
             fragmentManager.beginTransaction()
-                    .add(R.id.normal_calculator_container, progFragment).commit();
+                    .add(R.id.program_calculator_container, progFragment).commit();
         }
 
 

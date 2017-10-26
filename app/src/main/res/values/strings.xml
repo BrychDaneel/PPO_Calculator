@@ -13,6 +13,12 @@
     <string name="cap8">8</string>
     <string name="cap9">9</string>
     <string name="cap0">0</string>
+    <string name="capA">A</string>
+    <string name="capB">B</string>
+    <string name="capC">C</string>
+    <string name="capD">D</string>
+    <string name="capE">E</string>
+    <string name="capF">F</string>
 
     <string name="cap_point">.</string>
 
@@ -22,6 +28,15 @@
     <string name="cap_sub">-</string>
     <string name="cap_clean">CL</string>
     <string name="cap_equal">=</string>
+
+    <string name="cap_and">and</string>
+    <string name="cap_or">or</string>
+    <string name="cap_xor">xor</string>
+    <string name="cap_not">not</string>
+
+    <string name="mode_hex">hex</string>
+    <string name="mode_dec">dec</string>
+    <string name="mode_bin">bin</string>
 
     <string name="sin">sin</string>
     <string name="cos">cos</string>
