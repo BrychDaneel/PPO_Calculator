@@ -10,7 +10,7 @@ public class CalculatorActivity extends Activity {
 
     final String mNormalTabTag = "NormalTag";
     final String mProgramTabTag = "ProgramTag";
-    final String TAB_KEY = "om.eystudio.android.firstlab.CalculatorActivity.tab";
+    final String TAB_KEY = "com.eystudio.android.firstlab.CalculatorActivity.tab";
 
     TabHost tabHost;
     @Override
