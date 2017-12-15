@@ -1,0 +1,86 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".ProgramFragment">
+
+
+    <TableRow android:layout_height="0dp" android:layout_weight="0.2" android:layout_margin="5dp"  android:layout_width="match_parent">
+
+        <TextView style="@style/ProgResultStyle"
+            android:id="@+id/result"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:textAlignment="textEnd"
+            android:text="@string/start_text"/>
+    </TableRow>
+
+    <TableRow android:layout_margin="10dp">
+        <RadioGroup android:layout_weight="0.1"  android:orientation="horizontal" android:layout_width="match_parent">
+            <RadioButton android:id="@+id/radio_hex" style="@style/ProgButtonTheme" android:checked="true" android:text="@string/mode_hex"/>
+            <RadioButton android:id="@+id/radio_dec" style="@style/ProgButtonTheme" android:text="@string/mode_dec"/>
+            <RadioButton android:id="@+id/radio_bin" style="@style/ProgButtonTheme" android:text="@string/mode_bin"/>
+        </RadioGroup>
+    </TableRow>
+
+    <TableRow  android:layout_weight="0.1">
+
+        <Button android:id="@+id/button_and" style="@style/ProgButtonTheme" android:text="@string/cap_and"/>
+        <Button android:id="@+id/button_or" style="@style/ProgButtonTheme" android:text="@string/cap_or"/>
+        <Button android:id="@+id/button_xor" style="@style/ProgButtonTheme" android:text="@string/cap_xor"/>
+        <Button android:id="@+id/button_not" style="@style/ProgButtonTheme" android:text="@string/cap_not"/>
+    </TableRow>
+
+    <TableRow android:layout_weight="1">
+
+        <TableLayout android:layout_weight="1"  android:layout_width="0dp"  android:layout_height="match_parent">
+
+            <TableRow android:layout_weight="1">
+
+                <Button android:id="@+id/button0" style="@style/ProgButtonTheme" android:text="@string/cap0"/>
+                <Button android:id="@+id/button1" style="@style/ProgButtonTheme" android:text="@string/cap1"/>
+                <Button android:id="@+id/button2" style="@style/ProgButtonTheme" android:text="@string/cap2"/>
+                <Button android:id="@+id/button3" style="@style/ProgButtonTheme" android:text="@string/cap3"/>
+
+            </TableRow>
+
+            <TableRow android:layout_weight="1">
+
+                <Button android:id="@+id/button4" style="@style/ProgButtonTheme" android:text="@string/cap4"/>
+                <Button android:id="@+id/button5" style="@style/ProgButtonTheme" android:text="@string/cap5"/>
+                <Button android:id="@+id/button6" style="@style/ProgButtonTheme" android:text="@string/cap6"/>
+                <Button android:id="@+id/button7" style="@style/ProgButtonTheme" android:text="@string/cap7"/>
+            </TableRow>
+
+            <TableRow android:layout_weight="1">
+                <Button android:id="@+id/button8" style="@style/ProgButtonTheme" android:text="@string/cap8"/>
+                <Button android:id="@+id/button9" style="@style/ProgButtonTheme" android:text="@string/cap9"/>
+                <Button android:id="@+id/buttonA" style="@style/ProgButtonTheme" android:text="@string/capA"/>
+                <Button android:id="@+id/buttonB" style="@style/ProgButtonTheme" android:text="@string/capB"/>
+            </TableRow>
+
+            <TableRow android:layout_weight="1">
+                <Button android:id="@+id/buttonC" style="@style/ProgButtonTheme" android:text="@string/capC"/>
+                <Button android:id="@+id/buttonD" style="@style/ProgButtonTheme" android:text="@string/capD"/>
+                <Button android:id="@+id/buttonE" style="@style/ProgButtonTheme" android:text="@string/capE"/>
+                <Button android:id="@+id/buttonF" style="@style/ProgButtonTheme" android:text="@string/capF"/>
+            </TableRow>
+            
+
+        </TableLayout>
+
+        <TableLayout android:layout_weight="0.333" android:layout_height="match_parent" android:layout_width="0dp" android:orientation="vertical">
+            <TableRow android:layout_weight="1">
+                <Button android:id="@+id/button_clean" style="@style/ProgButtonTheme" android:text="@string/cap_clean"/>
+            </TableRow>
+            <TableRow  android:layout_weight="1">
+                <Button android:id="@+id/button_equal" style="@style/ProgButtonTheme"  android:text="@string/cap_equal"/>
+            </TableRow>
+        </TableLayout>
+    </TableRow>
+
+
+</TableLayout>

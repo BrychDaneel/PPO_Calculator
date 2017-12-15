@@ -1,75 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     tools:context="com.eystudio.android.firstlab.CalculatorActivity">
 
+    <TabHost
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tab_host">
 
-    <TableRow android:layout_height="wrap_content" android:layout_margin="5dp">
-
-        <TextView style="@style/ResultStyle"
-            android:id="@+id/result"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:textAlignment="textEnd"
-            android:text="@string/start_text"/>
-    </TableRow>
+            android:orientation="vertical">
 
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-    <TableRow  android:layout_marginTop="15dp" android:layout_weight="0.1">
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <Button android:id="@+id/button_add" style="@style/CalcButtonTheme" android:text="@string/cap_add"/>
-        <Button android:id="@+id/button_sub" style="@style/CalcButtonTheme" android:text="@string/cap_sub"/>
-        <Button android:id="@+id/button_mult" style="@style/CalcButtonTheme" android:text="@string/cap_mult"/>
-        <Button android:id="@+id/button_div" style="@style/CalcButtonTheme" android:text="@string/cap_div"/>
-    </TableRow>
+                <FrameLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/normal_calculator_container"/>
 
-    <TableRow android:layout_weight="1">
+                <FrameLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/program_calculator_container"/>
 
-        <TableLayout android:layout_weight="1"  android:layout_width="0dp"  android:layout_height="match_parent">
+                <FrameLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/picture_container"/>
 
-            <TableRow android:layout_weight="1">
-
-                <Button android:id="@+id/button1" style="@style/CalcButtonTheme" android:text="@string/cap1"/>
-                <Button android:id="@+id/button2" style="@style/CalcButtonTheme" android:text="@string/cap2"/>
-                <Button android:id="@+id/button3" style="@style/CalcButtonTheme" android:text="@string/cap3"/>
-
-            </TableRow>
-
-            <TableRow android:layout_weight="1">
-
-                <Button android:id="@+id/button4" style="@style/CalcButtonTheme" android:text="@string/cap4"/>
-                <Button android:id="@+id/button5" style="@style/CalcButtonTheme" android:text="@string/cap5"/>
-                <Button android:id="@+id/button6" style="@style/CalcButtonTheme" android:text="@string/cap6"/>
-            </TableRow>
-
-            <TableRow android:layout_weight="1">
-
-                <Button android:id="@+id/button7" style="@style/CalcButtonTheme" android:text="@string/cap7"/>
-                <Button android:id="@+id/button8" style="@style/CalcButtonTheme" android:text="@string/cap8"/>
-                <Button android:id="@+id/button9" style="@style/CalcButtonTheme" android:text="@string/cap9"/>
-            </TableRow>
-
-            <TableRow android:layout_weight="1">
-                <Button android:id="@+id/button_clean" style="@style/CalcButtonTheme" android:text="@string/cap_clean"/>
-                <Button android:id="@+id/button0" style="@style/CalcButtonTheme" android:text="@string/cap0"/>
-                <Button android:id="@+id/button_point" style="@style/CalcButtonTheme" android:text="@string/cap_point"/>
-            </TableRow>
-
-            </TableLayout>
-
-        <TableLayout android:layout_weight="0.333" android:layout_height="match_parent" android:layout_width="0dp" android:orientation="vertical">
-            <TableRow android:layout_weight="1">
-                <Button android:id="@+id/button_more"  style="@style/CalcButtonTheme"  android:text="@string/cap_more"/>
-            </TableRow>
-            <TableRow  android:layout_weight="1">
-                <Button android:id="@+id/button_equal" style="@style/CalcButtonTheme"  android:text="@string/cap_equal"/>
-            </TableRow>
-        </TableLayout>
-    </TableRow>
-
-</TableLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</android.support.constraint.ConstraintLayout>

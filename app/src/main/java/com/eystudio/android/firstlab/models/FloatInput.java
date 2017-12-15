@@ -11,6 +11,7 @@ public class FloatInput implements Serializable{
     int mIntCount = 0;
     int mFloatCount = 0;
     int mMaxLength;
+    int mBase = 10;
     double mValue;
     boolean mPointPressed = false;
     boolean mIsForeignValue = false;
@@ -24,6 +25,11 @@ public class FloatInput implements Serializable{
         setValue(mValue);
     }
 
+    public FloatInput(double mValue, int maxLength, int mBase){
+        this(mValue, maxLength);
+        setBase(mBase);
+    }
+
     public void inputNumber(int num){
 
         if (mIsForeignValue)
@@ -33,11 +39,14 @@ public class FloatInput implements Serializable{
             throw new ArithmeticException("Limit of numbers exceed.");
 
         if (!mPointPressed){
-            mValue = mValue * 10 + num;
-            mIntCount++;
+            mValue = mValue * mBase + num;
+            if (!(mIntCount == 0 && num == 0))
+                mIntCount++;
         } else {
+            if (num == 0)
+                return;
             mFloatCount++;
-            mValue = mValue + Math.pow(10, -mFloatCount) * num;
+            mValue = mValue + Math.pow(mBase, -mFloatCount) * num;
         }
     }
 
@@ -72,18 +81,37 @@ public class FloatInput implements Serializable{
         mValue = value;
     }
 
+    public int getBase() {
+        return mBase;
+    }
+
+    public void setBase(int mBase) {
+        this.mBase = mBase;
+    }
+
     @Override
     public String toString() {
         Formatter formatter = new Formatter();
         String fmt;
 
-        if (mIsForeignValue)
-            if (mValue % 1 == 0)
-                fmt = "%" + mMaxLength + ".0f";
-            else
+        if (mValue % 1 == 0) {
+            int intValue = (int)Math.round(mValue);
+            switch (mBase) {
+                case 2:
+                    return Integer.toBinaryString(intValue);
+                case 10:
+                    return Integer.toString(intValue);
+                case 16:
+                    return Integer.toHexString(intValue);
+                default:
+                    fmt = "%" + mMaxLength + ".0f";
+            }
+        } else
+
+            if (mIsForeignValue)
                 fmt = "%g";
-         else
-            fmt = formatter.format("%%%d.%df", mIntCount > 0 ? mIntCount : 1, mFloatCount).toString();
+             else
+                fmt = formatter.format("%%%d.%df", mIntCount > 0 ? mIntCount : 1, mFloatCount).toString();
 
         return new Formatter().format(fmt, mValue).toString();
     }
